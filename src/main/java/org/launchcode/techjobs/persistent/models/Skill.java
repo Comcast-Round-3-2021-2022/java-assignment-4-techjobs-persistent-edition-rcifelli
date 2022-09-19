@@ -1,9 +1,15 @@
 package org.launchcode.techjobs.persistent.models;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Skill extends AbstractEntity {
+
+    @ManyToMany(mappedBy = "skills")
+    private List<Job> jobs = new ArrayList<>();
 
     private String description;
 
@@ -15,6 +21,14 @@ public class Skill extends AbstractEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(List<Job> jobs) {
+        this.jobs = jobs;
     }
 
     //then create a skill controller that mirrors employer controller in function
